@@ -1,27 +1,31 @@
 <template>
-  <div id="app">
-    <headerApp/>
-    <router-view/>
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-3 col-lg-4 first-column">
+        <User/>
+      </div>
+      <div class="col-xl-6 col-lg-8 second-column">
+          <TweetList/>
+        </div>
+    </div>
   </div>
 </template>
 
 <script>
-import headerApp from "./components/header/headerApp";
+import User from "../user/user";
+import TweetList from "../tweet-List/TweetList"
 export default {
-  name: "App",
+  name: "Home",
   components: {
-    headerApp
+    User,
+    TweetList
   }
 };
 </script>
 
 <style lang="scss">
-@import "./components/abstracts/variables";
-
-.body {
-  background-color: $dark-jungle-green;
-  color: $grey-blue;
-}
+@import "../abstracts/variables";
+@import "../abstracts/placeholders";
 
 body {
   font-size: 13px;
@@ -109,5 +113,10 @@ pre {
 
 pre code {
   color: black;
+}
+
+.recent-visits {
+  @extend %block-content;
+  text-align: center;
 }
 </style>
