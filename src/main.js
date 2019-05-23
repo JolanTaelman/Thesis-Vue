@@ -6,8 +6,7 @@ import Profile from './components/Profile/profile'
 Vue.config.productionTip = false
 
 Vue.use(VueRouter)
-
-
+Vue.use(require('vue-moment'));
 
 const router = new VueRouter({
   routes: [

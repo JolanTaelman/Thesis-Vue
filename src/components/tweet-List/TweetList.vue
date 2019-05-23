@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="tweet in tweets" v-bind:key="tweet.id">
+    <div v-for="tweet in sourceOfTruth.tweets" v-bind:key="tweet.id">
       <div class="tweet">
         <div class="row">
           <div class="col-1">
@@ -12,31 +12,31 @@
               <span class="tweet__username">
                 <a>{{tweet.user}}</a>
               </span>
-              <span class="tweet__date">{{tweet.date}}</span>
+              <span class="tweet__date">  {{tweet.date | moment("dddd, MMMM Do YYYY")}}</span>
             </span>
-            <p class="tweet__content">{{tweet.content}}</p>
+            <p class="tweet__content">{{tweet.body}}</p>
             <div class="tweet__form">
-              <a class="btn tweet__edit">edit</a>
-              <button class="btn tweet__delete" >Delete</button>
+              <button class="btn tweet__delete" @click="deleteTweet(tweet.id)">Delete</button>
             </div>
           </div>
           <div
             v-for="comment in tweet.comments"
             v-bind:key="comment.id"
-            class="col-12 tweet__comments">
+            class="col-12 tweet__comments"
+          >
             <hr>
             <img class="tweets__comment-image" src="http://via.placeholder.com/20x20">
             <span class="tweet__username-date">
               <span class="tweet__username">{{comment.user}}</span>
-              <span class="tweet__date">{{comment.createdAt}}</span>
+              <span class="tweet__date">  {{comment.createdAt | moment("dddd, MMMM Do YYYY")}}</span>
             </span>
             <p class="tweet__content">{{comment.body}}</p>
           </div>
 
           <hr>
           <div class="col-12 tweet__coment-form">
-            <textarea name="body"></textarea>
-            <button class="btn">Comment</button>
+            <textarea v-model="commentText" name="body"></textarea>
+            <button class="btn" @click="setText(tweet.id)">Comment</button>
           </div>
         </div>
       </div>
@@ -46,9 +46,66 @@
 
 <script>
 var date = Date.now();
+const sourceOfTruth = {
+  tweets: [
+    {
+      id: 1,
+      user: "Jolan Taelman",
+      body: "Tweet 1",
+      date: date,
+      comments: [
+        {
+          id: 1,
+          body: "comment 1",
+          user: "username",
+          createdAt: date,
+          commenterPicture: "http://via.placeholder.com/20x20"
+        }
+      ]
+    },
+    {
+      id: 2,
+      user: "Jolan Taelman",
+      body: "Tweet 2",
+      date: date,
+      comments: []
+    },
+    {
+      id: 3,
+      user: "Jolan Taelman",
+      body: "Tweet 3",
+      date: date,
+      comments: []
+    }
+  ]
+};
 
 export default {
   name: "TweetList",
+  methods: {
+    deleteTweet: function(id) {
+      var newtweets = sourceOfTruth.tweets;
+      //eslint-disable-next-line
+      console.log("newtweets before", newtweets);
+      newtweets.splice(id - 1, 1);
+      //eslint-disable-next-line
+      console.log("newtweets after", newtweets);
+      sourceOfTruth.tweets = newtweets;
+    },
+    setText: function(id) {
+      var newComments = sourceOfTruth.tweets[(id - 1)].comments;
+            //eslint-disable-next-line
+console.log(newComments)
+      var commentoText = this.commentText;
+      newComments.push({
+        id: sourceOfTruth.tweets[id - 1].comments.length + 1,
+        body: commentoText,
+        user: "current user",
+        createdAt: Date.now(),
+        commenterPicture: "http://via.placeholder.com/20x20"
+      });
+    },
+  },
   data() {
     return {
       tweets: [
@@ -82,36 +139,19 @@ export default {
           comments: []
         }
       ],
-      date: date
-    };
-  },
-  testTweets: [
-    {
-      id: 1,
-      user: "Jolan Taelman",
-      body: "TestTweet 1",
       date: date,
-      comments: [
-        {
-          id: 1,
-          body: "comment 1",
-          user: "username",
-          createdAt: date,
-          commenterPicture: "http://via.placeholder.com/20x20"
-        }
-      ]
-    },
-    { id: 2, user: "Jolan Taelman", body: "Tweet 2", date: date, comments: [] },
-    { id: 3, user: "Jolan Taelman", body: "Tweet 3", date: date, comments: [] }
-  ]
+      sourceOfTruth: sourceOfTruth,
+      commentText: ""
+    };
+  }
 };
 </script>
 
 <style lang="scss">
 /* Tweets */
 
-@import '../abstracts/placeholders';
-@import '../abstracts/variables';
+@import "../abstracts/placeholders";
+@import "../abstracts/variables";
 
 .tweet {
   @extend %block-content !optional;
