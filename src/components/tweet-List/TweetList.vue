@@ -12,7 +12,7 @@
               <span class="tweet__username">
                 <a>{{tweet.user}}</a>
               </span>
-              <span class="tweet__date">  {{tweet.date | moment("dddd, MMMM Do YYYY")}}</span>
+              <span class="tweet__date">{{tweet.date | moment("dddd, MMMM Do YYYY")}}</span>
             </span>
             <p class="tweet__content">{{tweet.body}}</p>
             <div class="tweet__form">
@@ -28,7 +28,7 @@
             <img class="tweets__comment-image" src="http://via.placeholder.com/20x20">
             <span class="tweet__username-date">
               <span class="tweet__username">{{comment.user}}</span>
-              <span class="tweet__date">  {{comment.createdAt | moment("dddd, MMMM Do YYYY")}}</span>
+              <span class="tweet__date">{{comment.createdAt | moment("dddd, MMMM Do YYYY")}}</span>
             </span>
             <p class="tweet__content">{{comment.body}}</p>
           </div>
@@ -93,9 +93,9 @@ export default {
       sourceOfTruth.tweets = newtweets;
     },
     setText: function(id) {
-      var newComments = sourceOfTruth.tweets[(id - 1)].comments;
-            //eslint-disable-next-line
-console.log(newComments)
+      var newComments = sourceOfTruth.tweets[id - 1].comments;
+      //eslint-disable-next-line
+      console.log(newComments);
       var commentoText = this.commentText;
       newComments.push({
         id: sourceOfTruth.tweets[id - 1].comments.length + 1,
@@ -104,7 +104,7 @@ console.log(newComments)
         createdAt: Date.now(),
         commenterPicture: "http://via.placeholder.com/20x20"
       });
-    },
+    }
   },
   data() {
     return {

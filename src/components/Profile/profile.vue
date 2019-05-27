@@ -13,24 +13,35 @@
                 <li>
                   <span class="user-information__stat-title">Tweets:</span>
                   <span>
-                    <a>15</a>
+                    <a>12</a>
                   </span>
                 </li>
                 <li>
                   <span class="user-information__stat-title">Following:</span>
                   <span>
-                    <a>15</a>
+                    <a>11</a>
                   </span>
                 </li>
                 <li>
                   <span class="user-information__stat-title">Followers:</span>
                   <span>
-                    <a>15</a>
+                    <a>12</a>
                   </span>
                 </li>
               </ul>
             </div>
           </div>
+        </div>
+        <div class="profile">
+          <div  v-for=" item in this.pictures" v-bind:key="item.id">
+            <img class="test__image" :src=item.pictureUrl>
+          <div class="profile__user-info">
+          </div>
+          <div class="col-12 user-information__stats">
+          </div> 
+          </div>
+                     <button @click="addPicture()">add new</button>
+
         </div>
       </div>
       <div class="col-lg-8">
@@ -47,6 +58,27 @@ export default {
   name: "Profile",
   components: {
     TweetList
+  },
+  data() {
+    return {
+      pictures: [
+        {
+          id: 0,
+          pictureUrl:
+            "https://cdn.pixabay.com/photo/2018/01/05/00/20/test-image-3061864_960_720.png"
+        }
+      ]
+    };
+  },
+  methods: {
+    addPicture: function() {
+      var newpictures = this.pictures;
+      newpictures.push({
+        id: newpictures.length,
+        pictureUrl:
+          "https://cdn.pixabay.com/photo/2018/01/05/00/20/test-image-3061864_960_720.png"
+      });
+    }
   }
 };
 </script>
@@ -74,6 +106,12 @@ export default {
   border-radius: 50%;
   width: 150px;
   max-width: 100%;
+}
+.test__image {
+  border: 0;
+  width: 250px;
+  max-width: 100%;
+  padding: 5px;
 }
 
 .user-information__stats {
