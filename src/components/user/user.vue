@@ -45,7 +45,7 @@
           Tweets:
         </span>
         <span>
-          <a href="/users/ + req.user.id/following"> 12</a>
+          <a href="/users/ + req.user.id/following"> 15</a>
         </span>
 
       </li>
@@ -54,7 +54,7 @@
           Following:
         </span>
         <span>
-          <a href="/users/ + req.user.id/following"> 11</a>
+          <a href="/users/ + req.user.id/following"> 15</a>
         </span>
       </li>
       <li>
@@ -62,7 +62,7 @@
           Followers:
         </span>
         <span>
-          <a href="/users/ + req.user.id/followers"> 12</a>
+          <a href="/users/ + req.user.id/followers"> 15</a>
         </span>
       </li>
     </ul>
