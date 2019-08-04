@@ -13,19 +13,19 @@
                 <li>
                   <span class="user-information__stat-title">Tweets:</span>
                   <span>
-                    <a>12</a>
+                    <a>15</a>
                   </span>
                 </li>
                 <li>
                   <span class="user-information__stat-title">Following:</span>
                   <span>
-                    <a>11</a>
+                    <a>15</a>
                   </span>
                 </li>
                 <li>
                   <span class="user-information__stat-title">Followers:</span>
                   <span>
-                    <a>12</a>
+                    <a>15</a>
                   </span>
                 </li>
               </ul>

@@ -13,8 +13,8 @@
                            <router-link to="/Profile">Profile</router-link>
                  </li>
               </ul>
-              
 
+              
             </div>
             <span class="navbar__logo">
               <a href="/">

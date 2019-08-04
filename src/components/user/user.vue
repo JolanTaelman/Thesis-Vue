@@ -22,7 +22,7 @@
             <span class="user-information__stats-title">Following:</span>
             <span>
               <a href="/users/ + req.user.id">
-                5
+                15
               </a>
             </span>
           </li>
